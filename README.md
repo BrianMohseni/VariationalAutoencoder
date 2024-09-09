@@ -1,4 +1,4 @@
-# VariationalAutoencoder
+# Tensorflow_VariationalAutoencoder
 
 a VAE implemented with Tensorflow 2.17.0 / Keras 3.5.0 built specifically to be simple to adjust to how users see fit. 
 
