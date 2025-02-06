@@ -47,23 +47,9 @@ dataset = dataset.map(lambda x: (x / 255)).repeat()
 
 vae = custom_models.VAE(**config["model_config"])
 
-## file loading not working
-
-if os.path.exists("vae_encoder.weights.h5"):
-    vae.encoder.load_weights("vae_encoder.weights.h5")
-    print("encoder save file found")
-
-if os.path.exists("vae_decoder.weights.h5"):
-    vae.encoder.load_weights("vae_decoder.weights.h5")
-    print("decoder save file found")
-
-
-def save_model(epoch=None, logs=None):
-
-    vae.encoder.save_weights("vae_encoder.weights.h5")
-    vae.decoder.save_weights("vae_decoder.weights.h5")
-    print(f"\n Weights saved")
-
 vae.compile(**config["optimizer_config"])
 
 vae.fit(dataset, epochs=1000, steps_per_epoch=1000, callbacks=keras.callbacks.LambdaCallback(vae.save_model))
+
+vae.encoder.save_weights("vae_encoder.weights.h5")
+vae.decoder.save_weights("vae_decoder.weights.h5")
